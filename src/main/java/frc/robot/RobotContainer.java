@@ -5,8 +5,6 @@
 package frc.robot;
 
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -16,9 +14,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.ClawIntake;
 import frc.robot.commands.ClawRelease;
 import frc.robot.commands.ClawSnapperManual;
-import frc.robot.commands.DriveToPose;
 import frc.robot.commands.ForceIdle;
-import frc.robot.commands.RotateTo90;
 import frc.robot.commands.SetElevatorManualOverride;
 import frc.robot.commands.SetLEDS;
 import frc.robot.commands.SetWristManualOverride;
@@ -127,9 +123,19 @@ public class RobotContainer {
     // driverSquare.whileTrue(new GridTagTrack(drive, vision, driverPad, true, true, -0.50));
     // driverTriangle.whileTrue(new GridTagTrack(drive, vision, driverPad, true, true, 0.05));
 
-    driverR1.whileTrue(new RotateTo90(drive, driverPad, true, true, 0));
+    // driverR1.whileTrue(new RotateTo90(drive, driverPad, true, true, 0));
 
-    driverL2.onTrue(new SetLEDS());
+    // driverL2.onTrue(new SetLEDS());
+
+    driverSquare.onTrue(new ActuateLowToMidConeGrid());
+
+    driverTriangle.onTrue(new ActuateLowToHighConeGrid());
+
+    driverX.whileTrue(new ClawRelease());
+
+    driverR1.whileTrue(new ClawIntake(18, -4 + wrist.getWristOffset(), true));
+
+    driverShare.whileTrue(new ClawIntake(16, 85 + wrist.getWristOffset(), false));
 
     // driverStart.whileTrue(new ChargeStationBalance(drive));
 
@@ -145,7 +151,7 @@ public class RobotContainer {
     // driverX.whileTrue(new DriveToPose(drive, new Pose2d(14.22, 7.5, new Rotation2d(90)), true));
     
     // Cube Shelf Grid 1
-    driverTriangle.whileTrue(new DriveToPose(drive, new Pose2d(14.65, 1.07, new Rotation2d(0)), true));
+    // driverTriangle.whileTrue(new DriveToPose(drive, new Pose2d(14.65, 1.07, new Rotation2d(0)), true));
 
     operatorCircle.onTrue(new ActuateLowToMidCube());
     operatorSquare.onTrue(new ActuateLowToMidConeGrid());
@@ -158,11 +164,9 @@ public class RobotContainer {
     operatorL1.whileTrue(new ClawIntake(0, 6 + wrist.getWristOffset(), false));
     operatorL2.whileTrue(new ClawIntake(16, 85 + wrist.getWristOffset(), false));
     operatorR1.whileTrue(new ClawIntake(18, -4 + wrist.getWristOffset(), true));
-    driverR2.whileTrue(new ClawRelease());
+    
     operatorR2.whileTrue(new ClawRelease());
 
-    // operatorR2.whileTrue(new setWheelSpeed(-0.8));
-    // operatorR2.whileTrue(new setWheelSpeed(-0.8));
     
     operatorStart.toggleOnTrue(new SetElevatorManualOverride());
     operatorStart.toggleOnTrue(new SetWristManualOverride());

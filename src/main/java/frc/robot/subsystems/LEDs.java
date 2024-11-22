@@ -23,6 +23,7 @@ public class LEDs extends SubsystemBase {
 	};
 
 	// White Fade. Active while booting up (Not referenced in code)
+	@SuppressWarnings("unused")
 	private boolean[] whiteFade = { false, false, false };
 
 	// Turns LEDs Off. Active during teleop and autonomous when no other states are

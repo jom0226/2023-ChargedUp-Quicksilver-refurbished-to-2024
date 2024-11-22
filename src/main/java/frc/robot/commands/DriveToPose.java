@@ -1,7 +1,5 @@
 package frc.robot.commands;
 
-import static frc.robot.Constants.Vision.FIELD_WIDTH_METERS;
-import static frc.robot.Constants.Vision.FIELD_LENGTH_METERS;
 import static frc.robot.Constants.Vision.THETA_D;
 import static frc.robot.Constants.Vision.THETA_I;
 import static frc.robot.Constants.Vision.THETA_P;
@@ -13,9 +11,7 @@ import static frc.robot.Constants.Vision.Y_I;
 import static frc.robot.Constants.Vision.Y_P;
 
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
@@ -34,9 +30,11 @@ public class DriveToPose extends Command {
   private static final double THETA_TOLERANCE = Units.degreesToRadians(2.0);
 
   /** Default constraints are 90% of max speed, accelerate to full speed in 1/3 second */
+  @SuppressWarnings("unused")
   private static final TrapezoidProfile.Constraints DEFAULT_XY_CONSTRAINTS = new TrapezoidProfile.Constraints(
       3,
       5);
+  @SuppressWarnings("unused")
   private static final TrapezoidProfile.Constraints DEFAULT_OMEGA_CONSTRAINTS = new TrapezoidProfile.Constraints(
       3 * 0.4,
       5);
@@ -48,9 +46,11 @@ public class DriveToPose extends Command {
   private final Drive swerve;
   private final Pose2d initialPose;
   private Pose2d goalPose;
+  @SuppressWarnings("unused")
   private final boolean useAllianceColor;
   private double x = X_P;
   private double y = Y_P;
+  @SuppressWarnings("unused")
   private double theta = THETA_P;
 
   public DriveToPose (Drive swerve, Pose2d goalPose, boolean useAllianceColor) {
@@ -78,6 +78,7 @@ public class DriveToPose extends Command {
   @Override
   public void initialize() {
     resetPIDControllers();
+    @SuppressWarnings("unused")
     var pose = goalPose;
    // if (useAllianceColor && DriverStation.getAlliance() == DriverStation.Alliance.Red) {
     //   Translation2d transformedTranslation = new Translation2d(FIELD_LENGTH_METERS - pose.getX(), pose.getY());
@@ -93,6 +94,7 @@ public class DriveToPose extends Command {
   }
 
   private void resetPIDControllers() {
+    @SuppressWarnings("unused")
     var robotPose = initialPose;
     thetaController.reset();
     xController.reset();

@@ -23,3 +23,20 @@ public final class Main {
     RobotBase.startRobot(Robot::new);
   }
 }
+
+
+
+// Big thanks to 
+
+// pigrammer - 246 Programming Co-Lead
+
+// manso - Programmer
+
+// Joe_Ross
+
+// SirFire - Main Programmer Dude | 8551
+
+// Skyehawk - Details Matter|5934←2451←2767←876
+
+
+

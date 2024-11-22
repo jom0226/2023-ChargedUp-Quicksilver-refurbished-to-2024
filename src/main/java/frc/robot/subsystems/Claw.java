@@ -19,6 +19,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Elevator.ElevatorState;
 
+@SuppressWarnings("removal")
 public class Claw extends SubsystemBase {
 
 	public enum ClawState {
