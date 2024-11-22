@@ -131,11 +131,13 @@ public class RobotContainer {
 
     driverTriangle.onTrue(new ActuateLowToHighConeGrid());
 
-    driverX.whileTrue(new ClawRelease());
+    driverL1.whileTrue(new ClawRelease());
 
     driverR1.whileTrue(new ClawIntake(18, -4 + wrist.getWristOffset(), true));
 
     driverShare.whileTrue(new ClawIntake(16, 85 + wrist.getWristOffset(), false));
+
+    driverX.onTrue(new ActuateToIdle());
 
     // driverStart.whileTrue(new ChargeStationBalance(drive));
 
